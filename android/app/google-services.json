@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "175315634646",
+    "firebase_url": "https://xiichat.firebaseio.com",
+    "project_id": "xiichat",
+    "storage_bucket": "xiichat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:175315634646:android:a809aa99f6ecf87c1dbc77",
+        "android_client_info": {
+          "package_name": "com.example.xiichat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "175315634646-n2a76dmhvagbn0alhpnuti5ar72dqop2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGZ2a9SaRcvGlyNLIN-D84D-DnaRqIol0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "175315634646-n2a76dmhvagbn0alhpnuti5ar72dqop2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
