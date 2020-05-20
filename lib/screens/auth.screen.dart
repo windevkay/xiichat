@@ -18,8 +18,8 @@ class _AuthScreenState extends State<AuthScreen> {
   final _auth = FirebaseAuth.instance;
   var _isLoading = false;
 
-  void _submitAuthForm(String email, String password, String username, File image,
-      bool isLogin, BuildContext ctx) async {
+  void _submitAuthForm(String email, String password, String username,
+      File image, bool isLogin, BuildContext ctx) async {
     AuthResult authResult;
     try {
       setState(() {
@@ -34,14 +34,21 @@ class _AuthScreenState extends State<AuthScreen> {
         authResult = await _auth.createUserWithEmailAndPassword(
             email: email, password: password);
         //store user profile pic
-        final ref = FirebaseStorage.instance.ref().child('user_image').child(authResult.user.uid + '.jpg');
+        final ref = FirebaseStorage.instance
+            .ref()
+            .child('user_image')
+            .child(authResult.user.uid + '.jpg');
         await ref.putFile(image).onComplete;
+        //get saved image string
+        final url = await ref.getDownloadURL();
         //store username as well
         //collections specified are created on the fly
         await Firestore.instance
             .collection('users')
             .document(authResult.user.uid)
-            .setData({'username': username, 'email': email});
+            .setData(
+          {'username': username, 'email': email, 'image_url': url},
+        );
       }
     } on PlatformException catch (error) {
       var message = 'An error occured please check credentials!';
