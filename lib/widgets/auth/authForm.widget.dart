@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import '../pickers/userImagePicker.widget.dart';
 
 class AuthForm extends StatefulWidget {
-  final void Function(String email, String password, String username, File image,
-      bool isLogin, BuildContext ctx) submitFn;
+  final void Function(String email, String password, String username,
+      File image, bool isLogin, BuildContext ctx) submitFn;
   final bool isLoading;
 
   AuthForm(this.submitFn, this.isLoading);
@@ -45,8 +45,8 @@ class _AuthFormState extends State<AuthForm> {
 
     if (isValid) {
       _formKey.currentState.save();
-      widget.submitFn(_userEmail.trim(), _userPassword.trim(), _userName.trim(), _userImageFile,
-          _isLogin, context);
+      widget.submitFn(_userEmail.trim(), _userPassword.trim(), _userName.trim(),
+          _userImageFile, _isLogin, context);
     }
   }
 
@@ -66,6 +66,9 @@ class _AuthFormState extends State<AuthForm> {
                   if (!_isLogin) UserImagePicker(_pickedImage),
                   TextFormField(
                     key: ValueKey('email'),
+                    autocorrect: false,
+                    textCapitalization: TextCapitalization.none,
+                    enableSuggestions: false,
                     validator: (value) {
                       if (value.isEmpty || !value.contains('@')) {
                         return 'Please enter a valid email address';
@@ -83,6 +86,9 @@ class _AuthFormState extends State<AuthForm> {
                   if (!_isLogin)
                     TextFormField(
                       key: ValueKey('username'),
+                      autocorrect: true,
+                      textCapitalization: TextCapitalization.words,
+                      enableSuggestions: false,
                       validator: (value) {
                         if (value.isEmpty || value.length < 4) {
                           return 'Please enter atleast 4 characters';
